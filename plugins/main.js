@@ -9,7 +9,7 @@ command({
   async (message, match) => {
     await message.sendMessage("chat bot is actived");
 
-    System({
+    command({
         on: "text",
         fromMe: false,
     },
