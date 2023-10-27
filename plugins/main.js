@@ -1,4 +1,5 @@
 const { command, isPrivate } = require("../lib/");
+const responses = require("./responses.json"); // Replace with the correct path to your JSON file
 
 command({
     pattern: "chatbot", 
@@ -7,18 +8,20 @@ command({
     type: "user", 
   },
   async (message, match) => {
-    await message.sendMessage("chat bot is actived");
+    await message.sendMessage("_Chat bot is activated_");
 
     command({
         on: "text",
         fromMe: false,
     },
     async (message, match, m) => {
-        match = match || message.text; 
-        if (match === "hy") {
-            await message.sendMessage("Hi, my friend!");
-        } else if (match === "hi") {
-            await message.sendMessage("Hi bro");
+        match = match || message.text;
+        // Check if the match is in the JSON file
+        if (responses[match]) {
+            await message.sendMessage(responses[match]);
+        } else {
+            // If not found, provide a default response
+            await message.sendMessage("Sorry, I don't understand that.");
         }
     });
-  });
+});
