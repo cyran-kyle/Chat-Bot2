@@ -1,5 +1,5 @@
 const { command, isPrivate } = require("../lib/");
-const responses = require("./responses.json"); // Replace with the correct path to your JSON file
+const responses = require("../Db/responses.json"); // Replace with the correct path to your JSON file
 
 command({
     pattern: "chatbot", 
